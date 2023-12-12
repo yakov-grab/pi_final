@@ -2,5 +2,5 @@ transformers
 torch
 streamlit
 requests
-PIL
+pillow
 pytest
