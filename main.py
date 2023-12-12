@@ -34,21 +34,21 @@ def main():
 
     # Left column: Buttons, upload fields, and Predict Class button
     with col1:
-        uploaded_file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
-        url = st.text_input("Enter image URL:")
-        if st.button("Predict Class") and (url or uploaded_file):
-            if uploaded_file:
+        uploaded_file = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
+        url = st.text_input("Or enter image URL:")
+        if uploaded_file:
                 image = load_image_from_file(uploaded_file)
-            elif url:
-                try:
-                    image = load_image_from_url(url)
-                except Exception as e:
-                    st.warning(f"Error loading image from URL: {e}")
-                    return
-            else:
-                st.warning("Please upload an image or provide an image URL.")
+        elif url:
+            try:
+                image = load_image_from_url(url)
+            except Exception as e:
+                st.warning(f"Error loading image from URL: {e}")
                 return
-
+        else:
+            st.warning("Please upload an image or provide an image URL.")
+            return
+        
+        if st.button("Predict Class") and (image):
             predicted_class = predict(image)
             st.success(f"Predicted class: {predicted_class}")
 
