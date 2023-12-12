@@ -2,7 +2,6 @@ import pytest
 from PIL import Image
 from main import load_image_from_file, load_image_from_url, classify_image
 
-
 def test_load_image_from_file():
     temp_file = "img/red.png"
     loaded_image = load_image_from_file(temp_file)
