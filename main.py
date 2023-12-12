@@ -17,8 +17,8 @@ def load_image_from_url(url):
     image = Image.open(requests.get(url, stream=True).raw)
     return image
 
-# Function to predict the class
-def predict(image):
+# Function to classify image
+def classify_image(image):
     inputs = processor(images=image, return_tensors="pt")
     outputs = model(**inputs)
     logits = outputs.logits
@@ -27,7 +27,8 @@ def predict(image):
 
 def main():
     st.set_page_config(layout="wide")
-    st.title("ViT Image Classification App")
+    st.title("Simple image classification app")
+    st.subheader("vit-base-patch16-224")
 
     col1, col2 = st.columns([2, 3])
     image = None
@@ -35,9 +36,9 @@ def main():
     # Left column: Buttons, upload fields, and Predict Class button
     with col1:
         uploaded_file = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
-        url = st.text_input("Or enter image URL:")
+        url = st.text_input("...or enter image URL:")
         if uploaded_file:
-                image = load_image_from_file(uploaded_file)
+            image = load_image_from_file(uploaded_file)
         elif url:
             try:
                 image = load_image_from_url(url)
@@ -48,9 +49,9 @@ def main():
             st.warning("Please upload an image or provide an image URL.")
             return
         
-        if st.button("Predict Class") and (image):
-            predicted_class = predict(image)
-            st.success(f"Predicted class: {predicted_class}")
+        if st.button("Classify image") and image:
+            predicted_class = classify_image(image)
+            st.success(f"Image class: {predicted_class}")
 
     # Right column: Display the uploaded image
     with col2:
@@ -61,10 +62,10 @@ def main():
 
             st.caption("Uploaded image:")
             if uploaded_file:
-                st.image(image, caption="Uploaded Image", use_column_width=use_column_width)
+                st.image(image, use_column_width=use_column_width)
             elif url:
                 try:
-                    st.image(image, caption="Image from URL", use_column_width=use_column_width)
+                    st.image(image, use_column_width=use_column_width)
                 except Exception as e:
                     st.warning(f"Error loading image from URL: {e}")
 
