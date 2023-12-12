@@ -4,7 +4,7 @@
 
 This Streamlit app uses the Vision Transformer model [google/vit-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224) from Hugging Face for image classification.
 
-Available online on streamlit: https://simple-image-classification.streamlit.app
+Available online on streamlit: https://simple-image-classifier.streamlit.app/
 
 ## How to run locally
 1. Install dependencies:
