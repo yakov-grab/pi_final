@@ -60,12 +60,11 @@ def main():
             aspect_ratio = image.width / image.height
             use_column_width = aspect_ratio > 1.4
 
-            st.caption("Uploaded image:")
             if uploaded_file:
-                st.image(image, use_column_width=use_column_width)
+                st.image(image, caption="Uploaded image", use_column_width=use_column_width)
             elif url:
                 try:
-                    st.image(image, use_column_width=use_column_width)
+                    st.image(image, caption="Image from URL", use_column_width=use_column_width)
                 except Exception as e:
                     st.warning(f"Error loading image from URL: {e}")
 
