@@ -1,5 +1,7 @@
 # Simple Image Classification App
 
+[![Build Status](https://github.com/yakov-grab/simple-image-classification-app/workflows/python-app.yml/badge.svg)](https://github.com/yakov-grab/simple-image-classification-app/actions)
+
 This Streamlit app uses the Vision Transformer model [google/vit-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224) from Hugging Face for image classification.
 
 Available online on streamlit: https://simple-image-classification.streamlit.app
