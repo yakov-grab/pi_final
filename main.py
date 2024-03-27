@@ -48,7 +48,7 @@ def main():
         elif url:
             try:
                 image = load_image_from_url(url)
-            except Exception as e:
+            except requests.exceptions.RequestException as e:
                 st.warning(f"Error loading image from URL: {e}")
                 return
         else:
