@@ -22,12 +22,13 @@ def load_image_from_url(url):
 
 
 # Function to classify image
-def classify_image(image):
+def classify_image(image, model, processor):
     inputs = processor(images=image, return_tensors="pt")
-    outputs = m(**inputs)
+    outputs = model(**inputs)
     logits = outputs.logits
     predicted_class_idx = logits.argmax(-1).item()
-    return m.config.id2label[predicted_class_idx]
+    return model.config.id2label[predicted_class_idx]
+
 
 
 def main():
@@ -56,7 +57,7 @@ def main():
             return
 
         if st.button("Classify image") and image:
-            predicted_class = classify_image(image)
+            predicted_class = classify_image(image, m, processor)
             st.success(f"Image class: {predicted_class}")
 
     # Right column: Display the uploaded image
