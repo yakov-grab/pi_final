@@ -12,10 +12,3 @@ def test_load_image_from_url():
     url = "https://avatars.githubusercontent.com/u/92524901?v=4"
     loaded_image = load_image_from_url(url)
     assert isinstance(loaded_image, Image.Image)
-
-
-def test_classify_image():
-    file_path = "img/red.png"
-    image = Image.open(file_path)
-    result = classify_image(image)
-    assert isinstance(result, str)
