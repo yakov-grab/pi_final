@@ -30,7 +30,6 @@ def classify_image(image, model, processor):
     return model.config.id2label[predicted_class_idx]
 
 
-
 def main():
     st.set_page_config(layout="wide")
     st.title("Simple image classification app")
